@@ -20,3 +20,10 @@ exports.Get=(req, res, next)=>{
         console.log(response)
     }).catch(err=>console.log(err))
 }
+
+// Delete
+exports.Delete=(req, res, next)=>{
+    Post.findByIdAndDelete(req.params.id).then(response=>{
+        res.status(200).send({response:response})
+    }).catch(err=>console.log(err))
+}

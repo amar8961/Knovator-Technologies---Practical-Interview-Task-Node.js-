@@ -8,4 +8,6 @@ router.post('/post', postsController.Post)
 
 router.get('/get', postsController.Get)
 
+router.delete('/delete/:id', postsController.Delete)
+
 module.exports = router;

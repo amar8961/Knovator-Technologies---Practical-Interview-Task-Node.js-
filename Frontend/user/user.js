@@ -2,6 +2,7 @@ let logoutBtn=document.getElementById('logout')
 let postBtn=document.getElementById('post')
 let postUrl="http://localhost:4000/post"
 let getUrl="http://localhost:4000/get"
+let deleteUrl="http://localhost:4000/delete"
 
 logoutBtn.addEventListener('click', logout)
 postBtn.addEventListener('click', post)
@@ -66,7 +67,9 @@ window.addEventListener('DOMContentLoaded', () => {
 // Function for Show Data On Screen
 function showNewUserOnScreen(post) {
     const parentNode = document.getElementById("list");
-    const childHTML = `<li id=${post._id}> ${post.title} - ${post.body} - ${post.status}</li>`;
+    const childHTML = `<li id=${post._id}> ${post.title} - ${post.body} - ${post.status}
+                          <button onclick=deletePost('${post._id}')> Delete Post </button>
+                       </li>`;
 
     parentNode.innerHTML = parentNode.innerHTML + childHTML;
 }
@@ -87,3 +90,29 @@ function get() {
           console.log(err);
         });
 }
+
+// Deleting
+function deletePost(postID) {
+    axios.delete(`${deleteUrl}/${postID}`)
+      .then((response) => {
+        console.log(response);
+        // for delete data from screen
+        removeUserFromScreen(postID);
+      })
+      .catch((err) => {
+        document.body.innerHTML =
+          document.body.innerHTML +
+          "<h4> Something went wrong in .delete</h4>";
+        console.log(err);
+      });
+  }
+
+// Deleting form Screen
+function removeUserFromScreen(postID) {
+    const parentNode = document.getElementById("list");
+    const childNodeToBeDeleted = document.getElementById(postID);
+
+    if (childNodeToBeDeleted) {
+      parentNode.removeChild(childNodeToBeDeleted);
+    }
+  }
