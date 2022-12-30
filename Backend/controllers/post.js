@@ -12,3 +12,11 @@ exports.Post = (req, res, next) => {
         res.status(201).send(result)
     })
 }
+
+// Get
+exports.Get=(req, res, next)=>{
+    Post.find(req.params.id).then(response=>{
+        res.status(200).send(response)
+        console.log(response)
+    }).catch(err=>console.log(err))
+}

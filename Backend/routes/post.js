@@ -6,4 +6,6 @@ const postsController = require('../controllers/post');
 
 router.post('/post', postsController.Post)
 
+router.get('/get', postsController.Get)
+
 module.exports = router;
