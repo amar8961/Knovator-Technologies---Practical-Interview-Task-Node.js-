@@ -69,6 +69,7 @@ function showNewUserOnScreen(post) {
     const parentNode = document.getElementById("list");
     const childHTML = `<li id=${post._id}> ${post.title} - ${post.body} - ${post.status}
                           <button onclick=deletePost('${post._id}')> Delete Post </button>
+                          <button onclick=editPost('${post.title}','${post.body}','${post.status}','${post._id}')> Edit Post </button>
                        </li>`;
 
     parentNode.innerHTML = parentNode.innerHTML + childHTML;
@@ -116,3 +117,12 @@ function removeUserFromScreen(postID) {
       parentNode.removeChild(childNodeToBeDeleted);
     }
   }
+
+// Edit
+function editPost(title, body, status, postID) {
+  document.getElementById("title").value = title;
+  document.getElementById("body").value = body;
+  document.getElementById("status").value = status;
+  // for delete previous data after clicking on edit button
+  deletePost(postID);
+}
