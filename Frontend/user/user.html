@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +9,25 @@
     <script src="https://kit.fontawesome.com/ef0c0d16c3.js" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
     <h4>USER!</h4>
-    <h5>Logout  <i id='logout' class="fa-solid fa-arrow-right-from-bracket"></i></h5>
-        
+    <h5>Logout <i id='logout' class="fa-solid fa-arrow-right-from-bracket"></i></h5>
+    <form action="#">
+        <label for="Title">Title</label>
+        <input type="text" id="title" placeholder="Title">
+        <label for="Body">Body</label>
+        <input type="text" id="body" placeholder="Body">
+        <label for="Status">Status</label>
+        <select id="status">
+            <option value="Active">Active</option>
+            <option value="Active">Inactive</option>
+        </select>
+        <button id="post">Post</button>
+    </form>
+
 </body>
 <script src="./user.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
 </html>
