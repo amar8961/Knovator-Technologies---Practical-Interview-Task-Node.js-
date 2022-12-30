@@ -1,0 +1,6 @@
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M master
+git remote add origin https://github.com/amar8961/Knovator-Technologies---Practical-Interview-Task-Node.js-.git
+git push -u origin master
