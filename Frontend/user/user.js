@@ -42,6 +42,7 @@ function post(){
     axios({
         method: 'post',
         url: `${postUrl}`,
+        headers: {"Authorization":state.token},
         data:{
             title: title,
             body:body,
@@ -79,6 +80,7 @@ function showNewUserOnScreen(post) {
 function get() {
     axios({ 
         method: 'get', 
+        headers: {"Authorization":state.token},
         url: `${getUrl}`
     }).then(response => {
         console.log(response.data)
@@ -93,20 +95,22 @@ function get() {
 }
 
 // Deleting
-function deletePost(postID) {
-    axios.delete(`${deleteUrl}/${postID}`)
-      .then((response) => {
-        console.log(response);
-        // for delete data from screen
-        removeUserFromScreen(postID);
-      })
-      .catch((err) => {
-        document.body.innerHTML =
-          document.body.innerHTML +
-          "<h4> Something went wrong in .delete</h4>";
-        console.log(err);
-      });
-  }
+async function deletePost(postID){
+    try{
+        await axios({
+            method: 'delete',
+            url: `${deleteUrl}/${postID}`,
+        })
+        .then((response) => {
+            console.log(response);
+            // for delete data from screen
+            removeUserFromScreen(postID);
+          })
+    }
+    catch(err){
+        console.log(err)
+    }
+}
 
 // Deleting form Screen
 function removeUserFromScreen(postID) {

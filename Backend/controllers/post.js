@@ -7,15 +7,16 @@ exports.Post = (req, res, next) => {
         title: req.body.title,
         body: req.body.body,
         status: req.body.status,
+        userId: req.user.id
     })
-    post.save().then(result => {
+    return post.save().then(result => {
         res.status(201).send(result)
     })
 }
 
 // Get
 exports.Get=(req, res, next)=>{
-    Post.find(req.params.id).then(response=>{
+    Post.find({'userId': req.user.id}).then(response=>{
         res.status(200).send(response)
         console.log(response)
     }).catch(err=>console.log(err))
