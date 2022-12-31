@@ -12,4 +12,6 @@ router.get('/get', auth.authenticate , postsController.Get)
 
 router.delete('/delete/:id', postsController.Delete)
 
+router.get('/getAll', postsController.allPost)
+
 module.exports = router;
